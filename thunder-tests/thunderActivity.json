@@ -1,0 +1,110 @@
+[
+  {
+    "_id": "4b995e36-5e1b-4475-9fb6-f8f5fdea2a38",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products",
+    "url": "localhost:3000/products",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-07-24T16:35:31.881Z",
+    "modified": "2022-07-24T16:46:28.488Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "c4163f76-7d12-49c8-949c-a737b95d8fd6",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/1",
+    "url": "localhost:3000/products/1",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-07-24T16:39:08.788Z",
+    "modified": "2022-07-24T16:39:08.857Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "1bdde051-491e-4a4e-b86e-a13301ff274f",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/5",
+    "url": "localhost:3000/products/5",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-07-24T16:46:35.566Z",
+    "modified": "2022-07-24T16:46:35.621Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "056b2ec3-502f-4686-875f-7bf6664e0b1c",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/2",
+    "url": "localhost:3000/products/2",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-07-24T16:46:41.935Z",
+    "modified": "2022-07-24T16:46:41.996Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "b02726dd-3425-4594-a3eb-1e60a1701d8c",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/oi",
+    "url": "localhost:3000/products/oi",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-07-24T16:46:46.020Z",
+    "modified": "2022-07-24T16:46:46.075Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "11870f85-1d50-4968-aa92-05a04c992d09",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/",
+    "url": "localhost:3000/products/",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-07-24T16:47:05.659Z",
+    "modified": "2022-07-24T16:57:18.645Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"name\": \"Olho de Agamoto\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "484794df-17b6-49b3-b74d-5bf62a68526a",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/",
+    "url": "localhost:3000/products/",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-07-24T16:48:15.985Z",
+    "modified": "2022-07-24T16:57:14.404Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"name\": \"Olho de Agamoto\"\n}",
+      "form": []
+    },
+    "tests": []
+  }
+]
