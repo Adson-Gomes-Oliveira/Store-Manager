@@ -33,8 +33,8 @@ const getByID = async (req, res, next) => {
 const create = async (req, res, next) => {
   try {
     const { name } = req.body;
-    const response = await productService.create({ name });
-    
+    const response = await productService.create(name);
+    console.log(response);
     if (response.message) {
       const err = customError(response);
       throw err;
@@ -42,7 +42,6 @@ const create = async (req, res, next) => {
   
     res.status(response.status).json(response.data);
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
