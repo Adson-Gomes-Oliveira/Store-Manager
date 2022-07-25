@@ -18,10 +18,13 @@ const getByID = async (id) => {
 
   return { data: result[0], status: status.OK };
 };
-const create = async ({ name }) => {
-  const result = await productModel.create({ name });
+const create = async (name) => {
+  const verifyName = valid.create.verifyName(name);
+  if (verifyName.message) return verifyName;
 
-  const verify = valid.create({ name, result });
+  const result = await productModel.create(name);
+
+  const verify = valid.create.verifyData(result);
   if (verify.message) return verify;
   
   return { data: result[0], status: status.CREATED };
