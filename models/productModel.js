@@ -21,12 +21,12 @@ const create = async (name) => {
       (?)
   `, [name]);
 
-  console.log(response);
-
   const newProduct = [{
     id: response.insertId,
     name,
   }];
+
+  console.log(newProduct);
 
   return newProduct;
 };

@@ -26,7 +26,7 @@ const getByID = ({ id, result }) => {
 const verifyData = (result) => {
   const verifyResult = JOI.object({ result: JOI.array().max(1).min(1).required() });
 
-  const resultVerified = verifyResult.validate(result);
+  const resultVerified = verifyResult.validate({ result });
   
   if (resultVerified.error) {
     return { message: 'Product not added', status: status.INTERNAL };

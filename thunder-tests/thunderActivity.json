@@ -97,12 +97,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-07-24T16:48:15.985Z",
-    "modified": "2022-07-25T20:38:30.773Z",
+    "modified": "2022-07-25T21:00:34.198Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n\n}",
+      "raw": "{\n    \"name\": \"Olho de Agamoto\"\n}",
       "form": []
     },
     "tests": []
