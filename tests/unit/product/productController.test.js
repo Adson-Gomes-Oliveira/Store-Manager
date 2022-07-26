@@ -112,4 +112,61 @@ describe('User Controller Test', () => {
       });
     });
   });
+  describe('03. Creating new products', () => {
+    describe("When the request is successfully completed", () => {
+      const request = {};
+      const response = {};
+      const result = { data: { id: 1, name: 'Steve' }, status: status.OK };
+      const MOCK_NAME = 'Steve';
+
+      before(async () => {
+        request.body = sinon.stub().returns(MOCK_NAME);
+        response.status = sinon.stub().returns(response);
+        response.json = sinon.stub().returns();
+
+        sinon.stub(productService, 'create').resolves(result);
+      });
+
+      after(async () => {
+        productService.create.restore();
+      });
+
+      it("a code 200 OK status is called", async () => {
+        await productController.create(request, response);
+        expect(response.status.calledWith(status.OK)).to.equal(true);
+      });
+      it("the right data is called", async () => {
+        await productController.create(request, response);
+        expect(response.json.calledWith(result.data)).to.equal(true);
+      });
+    });
+    describe("When the request fails", () => {
+      const request = {};
+      const response = {};
+      const next = () => {};
+      const result = {
+        message: '"name" is required',
+        status: status.BAD_REQUEST,
+      };
+      const MOCK_NAME = '';
+
+      before(async () => {
+        request.body = sinon.stub().returns(MOCK_NAME);
+        sinon.stub(productService, "getByID").resolves(result);
+      });
+
+      after(async () => {
+        productService.getByID.restore();
+      });
+
+      it("an error is throwed", async () => {
+        try {
+          await productController.getByID(request, response, next);
+        } catch (error) {
+          expect(error.message).to.equal(result.message);
+          expect(error.status).to.equal(result.status);
+        }
+      });
+    });
+  });
 });

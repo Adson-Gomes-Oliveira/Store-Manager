@@ -34,7 +34,7 @@ const create = async (req, res, next) => {
   try {
     const { name } = req.body;
     const response = await productService.create(name);
-    console.log(response);
+
     if (response.message) {
       const err = customError(response);
       throw err;

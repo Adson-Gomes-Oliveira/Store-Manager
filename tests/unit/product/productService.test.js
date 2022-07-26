@@ -120,4 +120,54 @@ describe('User Service Test', () => {
       });
     });
   });
+  describe('03. Creating new products', () => {
+    describe('When the service is successfully completed', () => {
+      const MOCK_NAME = 'Steve Rogers';
+
+      before(async () => {
+        const result = [{ id: 1, name: MOCK_NAME }];
+        sinon.stub(productModel, 'create').resolves(result);
+      });
+      after(async () => {
+        productModel.create.restore();
+      });
+      
+      it('returns an object', async () => {
+        const result = await productService.create(MOCK_NAME);
+        expect(result).to.be.an('object');
+      });
+      it('inside this object exists data key', async () => {
+        const result = await productService.create(MOCK_NAME);
+        expect(result).to.have.property('data');
+      });
+      it('and exists status key also', async () => {
+        const result = await productService.create(MOCK_NAME);
+        expect(result).to.have.property('status');
+      });
+    });
+    describe('When the payload is invalid', () => {
+      const MOCK_PAYLOAD = {};
+
+      before(async () => {
+        const result = [{}];
+        sinon.stub(productModel, "create").resolves(result);
+      });
+      after(async () => {
+        productModel.create.restore();
+      });
+
+      it('returns an object', async () => {
+        const result = await productService.create(MOCK_PAYLOAD);
+        expect(result).to.be.an('object');
+      });
+      it('inside this object exists message key', async () => {
+        const result = await productService.create(MOCK_PAYLOAD);
+        expect(result).to.have.property('message');
+      });
+      it('and exists status key also', async () => {
+        const result = await productService.create(MOCK_PAYLOAD);
+        expect(result).to.have.property('status');
+      });
+    });
+  });
 });

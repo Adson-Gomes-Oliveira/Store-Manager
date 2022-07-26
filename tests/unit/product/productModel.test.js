@@ -58,4 +58,37 @@ describe('User Model Test', () => {
       });
     });
   });
+  describe('03. Creating new products', () => {
+    describe('When the POST is successfully completed', () => {
+      const MOCK_NAME = 'Steve Rogers'
+      const MOCK_ID = 1
+
+      before(async () => {
+        const result = [{ insertId: MOCK_ID }];
+        sinon.stub(connection, 'execute').resolves(result);
+      });
+      after(async () => {
+        connection.execute.restore();
+      });
+
+      it('returns an array', async () => {
+        const response = await productModel.create(MOCK_NAME);
+        expect(response).to.be.an('array');
+      });
+      it('inside the array exist an object', async () => {
+        const response = await productModel.create(MOCK_NAME);
+        expect(response[0]).to.be.an('object');
+      });
+      it('the object contain the correct ID', async () => {
+        const response = await productModel.create(MOCK_NAME);
+        expect(response[0]).to.have.property('id');
+        expect(response[0].id).to.be.equal(MOCK_ID);
+      });
+      it("the object contain the product name", async () => {
+        const response = await productModel.create(MOCK_NAME);
+        expect(response[0]).to.have.property('name');
+        expect(response[0].name).to.be.equal(MOCK_NAME);
+      });
+    });
+  });
 });

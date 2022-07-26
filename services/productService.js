@@ -19,6 +19,7 @@ const getByID = async (id) => {
   return { data: result[0], status: status.OK };
 };
 const create = async (name) => {
+  console.log(name);
   const verifyName = valid.create.verifyName(name);
   if (verifyName.message) return verifyName;
 

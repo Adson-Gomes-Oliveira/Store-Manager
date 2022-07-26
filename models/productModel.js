@@ -26,8 +26,6 @@ const create = async (name) => {
     name,
   }];
 
-  console.log(newProduct);
-
   return newProduct;
 };
 const getAllProductIDs = async () => {
