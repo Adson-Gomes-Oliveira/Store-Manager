@@ -12,6 +12,7 @@ app.get('/', (_request, response) => {
 
 app.use(express.json());
 app.use('/products', router.productRouter);
+app.use('/sales', router.saleRouter);
 app.use(errorMiddleware);
 
 // não remova essa exportação, é para o avaliador funcionar

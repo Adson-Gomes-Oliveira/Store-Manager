@@ -22,7 +22,6 @@ const getByID = ({ id, result }) => {
 
   return {};
 };
-
 const verifyData = (result) => {
   const verifyResult = JOI.object({ result: JOI.array().max(1).min(1).required() });
 
@@ -56,6 +55,7 @@ const verifyName = (name) => {
 
   return {};
 };
+
 const create = {
   verifyData,
   verifyName,

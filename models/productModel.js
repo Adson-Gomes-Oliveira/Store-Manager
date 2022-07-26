@@ -30,9 +30,18 @@ const create = async (name) => {
 
   return newProduct;
 };
+const getAllProductIDs = async () => {
+  const [response] = await connection.execute(`
+    SELECT id FROM StoreManager.products
+  `);
+
+  const idsToReturn = response.map((id) => Object.values(id)[0]);
+  return idsToReturn;
+};
 
 module.exports = {
   getAll,
   getByID,
   create,
+  getAllProductIDs,
 };

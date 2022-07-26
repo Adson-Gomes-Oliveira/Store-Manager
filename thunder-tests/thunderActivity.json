@@ -93,16 +93,16 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:3000/products/",
-    "url": "localhost:3000/products/",
+    "url": "localhost:3000/sales/",
     "method": "POST",
     "sortNum": 0,
     "created": "2022-07-24T16:48:15.985Z",
-    "modified": "2022-07-25T21:00:34.198Z",
+    "modified": "2022-07-26T14:40:39.185Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"name\": \"Olho de Agamoto\"\n}",
+      "raw": "[\n    {\n     \"productId\": 1,\n     \"quantity\": 1\n    },\n    {\n     \"productId\": 3,\n     \"quantity\": 1\n    }\n]",
       "form": []
     },
     "tests": []
