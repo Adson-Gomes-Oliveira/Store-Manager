@@ -1,6 +1,16 @@
 const JOI = require('joi');
 const status = require('../helpers/httpStatus');
 
+const getByID = (result) => {
+  const resultEmpty = JOI.object({ result: JOI.array().min(1).required() });
+
+  const verifyResult = resultEmpty.validate({ result });
+
+  if (verifyResult.error) return { message: 'Sale not found', status: status.NO_CONTENT };
+
+  return {};
+};
+
 const payloadConditionals = (cond) => {
   if (cond.verifyID.error) {
     return { message: '"productId" is required', status: status.BAD_REQUEST };
@@ -54,5 +64,6 @@ const create = {
 };
 
 module.exports = {
+  getByID,
   create,
 };

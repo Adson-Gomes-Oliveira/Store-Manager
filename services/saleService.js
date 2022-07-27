@@ -3,6 +3,18 @@ const saleModel = require('../models/saleModel');
 const valid = require('../validations/saleValidation');
 const status = require('../helpers/httpStatus');
 
+const getAll = async () => {
+  const result = await saleModel.getAll();
+  return { data: result, status: status.OK };
+};
+const getByID = async (id) => {
+  const result = await saleModel.getByID(id);
+
+  const verify = valid.getByID(result);
+  if (verify.message) return verify;
+
+  return { data: result, status: status.OK };
+};
 const create = async (payload) => {
   const getAllProductIDs = await productModel.getAllProductIDs();
 
@@ -17,5 +29,7 @@ const create = async (payload) => {
 };
 
 module.exports = {
+  getAll,
+  getByID,
   create,
 };
