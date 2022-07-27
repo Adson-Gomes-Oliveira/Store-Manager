@@ -53,6 +53,17 @@ const edit = async (payload) => {
 
   return newProduct;
 };
+const exclude = async (id) => {
+  const [response] = await connection.execute(`
+    DELETE FROM StoreManager.products
+    WHERE id = ?
+  `, [id]);
+
+  console.log(response);
+  if (response.affectedRows === 0) return { message: 'Product not found', status: 404 };
+
+  return {};
+};
 
 module.exports = {
   getAll,
@@ -60,4 +71,5 @@ module.exports = {
   getByID,
   create,
   edit,
+  exclude,
 };

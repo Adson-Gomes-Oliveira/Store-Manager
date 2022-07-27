@@ -63,10 +63,26 @@ const edit = async (req, res, next) => {
     next(error);
   }
 };
+const exclude = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const response = await productService.exclude(Number(id));
+
+    if (response.message) {
+      const err = customError(response);
+      throw err;
+    }
+    
+    res.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   getAll,
   getByID,
   create,
   edit,
+  exclude,
 };

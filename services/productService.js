@@ -41,10 +41,17 @@ const edit = async (payload) => {
 
   return { data: result, status: status.OK };
 };
+const exclude = async (id) => {
+  const result = await productModel.exclude(id);
+  if (result.message) return result;
+
+  return {};
+};
 
 module.exports = {
   getAll,
   getByID,
   create,
   edit,
+  exclude,
 };
