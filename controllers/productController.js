@@ -45,9 +45,28 @@ const create = async (req, res, next) => {
     next(error);
   }
 };
+const edit = async (req, res, next) => {
+  try {
+    const { name } = req.body;
+    const { id } = req.params;
+    const payload = { id, name };
+
+    const response = await productService.edit(payload);
+
+    if (response.message) {
+      const err = customError(response);
+      throw err;
+    }
+
+    res.status(response.status).json(response.data);
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   getAll,
   getByID,
   create,
+  edit,
 };

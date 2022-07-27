@@ -19,7 +19,6 @@ const getByID = async (id) => {
   return { data: result[0], status: status.OK };
 };
 const create = async (name) => {
-  console.log(name);
   const verifyName = valid.create.verifyName(name);
   if (verifyName.message) return verifyName;
 
@@ -30,9 +29,22 @@ const create = async (name) => {
   
   return { data: result[0], status: status.CREATED };
 };
+const edit = async (payload) => {
+  const { name } = payload;
+
+  const verifyName = valid.create.verifyName(name);
+  if (verifyName.message) return verifyName;
+
+  const result = await productModel.edit(payload);
+  
+  if (result.message) return result;
+
+  return { data: result, status: status.OK };
+};
 
 module.exports = {
   getAll,
   getByID,
   create,
+  edit,
 };

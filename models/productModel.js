@@ -7,6 +7,14 @@ const getAll = async () => {
   console.log(response);
   return response;
 };
+const getAllProductIDs = async () => {
+  const [response] = await connection.execute(`
+    SELECT id FROM StoreManager.products
+  `);
+
+  const idsToReturn = response.map((id) => Object.values(id)[0]);
+  return idsToReturn;
+};
 const getByID = async (id) => {
   const [response] = await connection.execute(`
     SELECT * FROM StoreManager.products
@@ -28,18 +36,28 @@ const create = async (name) => {
 
   return newProduct;
 };
-const getAllProductIDs = async () => {
+const edit = async (payload) => {
+  const { id, name } = payload;
   const [response] = await connection.execute(`
-    SELECT id FROM StoreManager.products
-  `);
+    UPDATE StoreManager.products
+    SET name = ?
+    WHERE id = ?
+  `, [name, id]);
 
-  const idsToReturn = response.map((id) => Object.values(id)[0]);
-  return idsToReturn;
+  if (response.affectedRows === 0) return { message: 'Product not found', status: 404 };
+
+  const newProduct = {
+    id,
+    name,
+  };
+
+  return newProduct;
 };
 
 module.exports = {
   getAll,
+  getAllProductIDs,
   getByID,
   create,
-  getAllProductIDs,
+  edit,
 };
