@@ -53,7 +53,7 @@ const create = async (payload) => {
   return newSale;
 };
 const editItemSold = async (id, productId, quantity) => {
-  const [response] = await connection.execute(`
+  await connection.execute(`
     UPDATE StoreManager.sales_products
     SET product_id = ?, quantity = ?
     WHERE sale_id = ?
