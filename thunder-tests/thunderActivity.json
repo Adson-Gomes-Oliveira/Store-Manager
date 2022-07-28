@@ -158,7 +158,7 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2022-07-27T18:11:54.262Z",
-    "modified": "2022-07-28T19:33:39.751Z",
+    "modified": "2022-07-28T20:22:55.404Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -440,6 +440,106 @@
       "raw": "[\n    {\n        \"productId\": 2,\n        \"quantity\": 600\n    },\n    {\n        \"productId\": 3,\n        \"quantity\": 10\n    }\n]",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "fb012b80-f906-4472-ac92-81c1806d1ea0",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/search?q=Traje",
+    "url": "http://localhost:3000/products/search?q=Traje",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-07-28T20:23:20.084Z",
+    "modified": "2022-07-28T20:24:25.524Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "Traje",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "47fd4552-40da-4d2b-b18d-bf9d968d1b5c",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/search?q=traje",
+    "url": "http://localhost:3000/products/search?q=traje",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-07-28T20:24:38.599Z",
+    "modified": "2022-07-28T20:28:25.919Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "traje",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "45fea7bb-a501-481c-a76d-52623c341d25",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/search?q=escudo",
+    "url": "http://localhost:3000/products/search?q=escudo",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-07-28T20:28:31.270Z",
+    "modified": "2022-07-28T20:28:31.327Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "escudo",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "dca31d67-55a6-4d38-b175-1d1adaf3ce73",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/search?q=",
+    "url": "http://localhost:3000/products/search?q=",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-07-28T20:28:36.806Z",
+    "modified": "2022-07-28T20:28:52.436Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "5ea91b92-3d2c-4762-b9fa-d5418abb5eae",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/search?q=5",
+    "url": "http://localhost:3000/products/search?q=5",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-07-28T20:28:41.566Z",
+    "modified": "2022-07-28T20:28:41.616Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "5",
+        "isPath": false
+      }
+    ],
     "tests": []
   }
 ]

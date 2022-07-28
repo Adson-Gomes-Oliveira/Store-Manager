@@ -55,6 +55,27 @@ const verifyName = (name) => {
 
   return {};
 };
+const verifyQuery = (query) => {
+  const invalidQuery = JOI.object({ query: JOI.string().min(1).required() });
+  const queryVerified = invalidQuery.validate({ query });
+
+  if (queryVerified.error) return { message: 'Invalid query', status: status.BAD_REQUEST };
+
+  return {};
+};
+const verifyResult = (result) => {
+  const emptyResult = JOI.object({ result: JOI.array().min(1).required() });
+  const resultVerified = emptyResult.validate({ result });
+
+  if (resultVerified.error) return { message: 'Product not found', status: status.NO_CONTENT };
+
+  return {};
+};
+
+const search = {
+  verifyQuery,
+  verifyResult,
+};
 
 const create = {
   verifyData,
@@ -65,4 +86,5 @@ module.exports = {
   getAll,
   getByID,
   create,
+  search,
 };

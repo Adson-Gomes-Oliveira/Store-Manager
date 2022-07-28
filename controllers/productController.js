@@ -15,6 +15,22 @@ const getAll = async (_req, res, next) => {
     next(error);
   }
 };
+const search = async (req, res, next) => {
+  try {
+    const { q } = req.query;
+  
+    const response = await productService.search(q);
+  
+    if (response.message) {
+      const err = customError(response);
+      throw err;
+    }
+  
+    res.status(response.status).json(response.data);
+  } catch (error) {
+    next(error);
+  }
+};
 const getByID = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -85,4 +101,5 @@ module.exports = {
   create,
   edit,
   exclude,
+  search,
 };

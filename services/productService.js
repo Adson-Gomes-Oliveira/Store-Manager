@@ -10,6 +10,22 @@ const getAll = async () => {
 
   return { data: result, status: status.OK };
 };
+const search = async (query) => {
+  if (query.length < 1) {
+    const newResult = await getAll();
+    return newResult;
+  }
+
+  const verifyQuery = valid.search.verifyQuery(query);
+  if (verifyQuery.message) return verifyQuery;
+
+  const result = await productModel.search(query);
+  console.log(result);
+  const verifyResult = valid.search.verifyResult(result);
+  if (verifyResult.message) return verifyResult;
+
+  return { data: result, status: status.OK };
+};
 const getByID = async (id) => {
   const result = await productModel.getByID(id);
 
@@ -54,4 +70,5 @@ module.exports = {
   create,
   edit,
   exclude,
+  search,
 };
