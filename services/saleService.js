@@ -27,9 +27,22 @@ const create = async (payload) => {
   const result = await saleModel.create(payload);
   return { data: result, status: status.CREATED };
 };
+const edit = async (payload) => {
+  const result = await saleModel.edit(payload);
+  return { data: result, status: status.CREATED };
+};
+const exclude = async (id) => {
+  const result = await saleModel.exclude(id);
+
+  if (result.message) return result;
+
+  return {};
+};
 
 module.exports = {
   getAll,
   getByID,
   create,
+  edit,
+  exclude,
 };

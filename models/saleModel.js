@@ -52,9 +52,44 @@ const create = async (payload) => {
 
   return newSale;
 };
+const editItemSold = async (id, productId, quantity) => {
+  const [response] = await connection.execute(`
+    UPDATE StoreManager.sales_products
+    SET product_id = ?, quantity = ?
+    WHERE sale_id = ?
+  `, [productId, quantity, id]);
+};
+const edit = async (payload) => {
+  const { idParam: id, sales } = payload;
+  const promises = [];
+  for (let item = 0; item < sales.length; item += 1) {
+    const { productId, quantity } = sales[item];
+    promises.push(editItemSold(id, productId, quantity));
+  }
+
+  await Promise.all(promises);
+
+  const newSale = {
+    saleId: id,
+    itemsUpdated: sales,
+  };
+
+  return newSale;
+};
+const exclude = async (id) => {
+  const [response] = await connection.execute(`
+    DELETE FROM StoreManager.sales
+    WHERE id = ?
+  `, [id]);
+
+  if (response.affectedRows === 0) return { message: 'Sale not found', status: 404 };
+  return {};
+};
 
 module.exports = {
   getAll,
   getByID,
   create,
+  edit,
+  exclude,
 };
