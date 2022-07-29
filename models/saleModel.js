@@ -78,7 +78,7 @@ const edit = async (payload) => {
     promises.push(editItemSold(id, productId, quantity));
   }
 
-  await promises.all(promises);
+  await Promise.all(promises);
 
   const newSale = {
     saleId: id,
