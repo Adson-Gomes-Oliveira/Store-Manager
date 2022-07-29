@@ -12,7 +12,7 @@ const getByID = (result) => {
 };
 
 const payloadConditionals = (cond) => {
-  if (cond.verifyID.error) {
+  if (cond.verifySID.error) {
     return { message: '"productId" is required', status: status.BAD_REQUEST };
   }
   if (cond.verifyQuantity.error) {
@@ -34,11 +34,11 @@ const verifyPayload = (payload) => {
     const quantityUndefined = JOI.object({ quantity: JOI.number().required() });
     const zeroQuantity = JOI.object({ quantity: JOI.number().min(1) });
 
-    const verifyID = idUndefined.validate({ productId });
+    const verifySID = idUndefined.validate({ productId });
     const verifyQuantity = quantityUndefined.validate({ quantity });
     const verifyZeroQuantity = zeroQuantity.validate({ quantity });
-console.log(verifyID);
-    const conditionals = payloadConditionals({ verifyID, verifyQuantity, verifyZeroQuantity });
+
+    const conditionals = payloadConditionals({ verifySID, verifyQuantity, verifyZeroQuantity });
     
     if (conditionals.message) return conditionals;
 
@@ -51,10 +51,33 @@ console.log(verifyID);
 };
 const verifyID = (productIDs, payload) => {
   const payloadIDs = payload.map((item) => Object.values(item)[0]);
-  console.log(productIDs);
   const filter = payloadIDs.some((payloadID) => (!productIDs.includes(payloadID)));
   if (filter) return { message: 'Product not found', status: status.NO_CONTENT };
 
+  return {};
+};
+const verifyPayloadEdit = (payload) => {
+  console.log(payload);
+  if (!payload.length) return { message: '"productId" is required', status: status.BAD_REQUEST };
+  const validation = payload.map((item) => {
+    const { productId, quantity } = item;
+    const idNoExists = JOI.object({ productId: JOI.number().required() });
+    const quantityUndefined = JOI.object({ quantity: JOI.number().required() });
+    const zeroQuantity = JOI.object({ quantity: JOI.number().min(1) });
+
+    const verifySID = idNoExists.validate({ productId });
+    const verifyQuantity = quantityUndefined.validate({ quantity });
+    const verifyZeroQuantity = zeroQuantity.validate({ quantity });
+
+    const conditionals = payloadConditionals({ verifySID, verifyQuantity, verifyZeroQuantity });
+
+    if (conditionals.message) return conditionals;
+
+    return {};
+  });
+
+  const catchError = validation.find((valid) => valid.message && valid);
+  if (catchError) return catchError;
   return {};
 };
 
@@ -63,7 +86,12 @@ const create = {
   verifyID,
 };
 
+const edit = {
+  verifyPayloadEdit,
+};
+
 module.exports = {
   getByID,
   create,
+  edit,
 };

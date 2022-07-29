@@ -53,7 +53,9 @@ const edit = async (req, res, next) => {
       throw err;
     }
 
-    res.status(response.status).json(response.data);
+    const { data } = response;
+
+    res.status(response.status).send(data);
   } catch (error) {
     next(error);
   }

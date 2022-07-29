@@ -28,8 +28,20 @@ const create = async (payload) => {
   return { data: result, status: status.CREATED };
 };
 const edit = async (payload) => {
+  const getAllProductIDs = await productModel.getAllProductIDs();
+  const getAllSalesIDs = await saleModel.getAllSalesIDs();
+
+  const verifyPayload = valid.edit.verifyPayloadEdit(payload.sales);
+  if (verifyPayload.message) return verifyPayload;
+
+  const verifyPayloadIDs = valid.create.verifyID(getAllProductIDs, payload.sales);
+  if (verifyPayloadIDs.message) return verifyPayloadIDs;
+  const obj = [{ id: payload.idParam }];
+  const verifySalesIDs = valid.create.verifyID(getAllSalesIDs, obj);
+  if (verifySalesIDs.message) return { message: 'Sale not found', status: status.NO_CONTENT };
+
   const result = await saleModel.edit(payload);
-  return { data: result, status: status.CREATED };
+  return { data: result, status: status.OK };
 };
 const exclude = async (id) => {
   const result = await saleModel.exclude(id);

@@ -53,25 +53,36 @@ const create = async (payload) => {
   return newSale;
 };
 const editItemSold = async (id, productId, quantity) => {
-  await connection.execute(`
+  const [response] = await connection.execute(`
     UPDATE StoreManager.sales_products
-    SET product_id = ?, quantity = ?
-    WHERE sale_id = ?
-  `, [productId, quantity, id]);
+    SET product_id = ?, quantity = ?      
+    WHERE sale_id = ? AND product_id = ?
+  `, [productId, quantity, id, productId]);
+
+  return response;
+};
+const getAllSalesIDs = async () => {
+  const [response] = await connection.execute(`
+    SELECT id FROM StoreManager.sales
+  `);
+
+  const idsToReturn = response.map((id) => Object.values(id)[0]);
+  return idsToReturn;
 };
 const edit = async (payload) => {
   const { idParam: id, sales } = payload;
   const promises = [];
+
   for (let item = 0; item < sales.length; item += 1) {
     const { productId, quantity } = sales[item];
     promises.push(editItemSold(id, productId, quantity));
   }
 
-  await Promise.all(promises);
-
   const newSale = {
     saleId: id,
-    itemsUpdated: sales,
+    itemsUpdated: [
+      ...sales,
+    ],
   };
 
   return newSale;
@@ -92,4 +103,5 @@ module.exports = {
   create,
   edit,
   exclude,
+  getAllSalesIDs,
 };
