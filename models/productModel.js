@@ -4,7 +4,7 @@ const getAll = async () => {
   const [response] = await connection.execute(`
     SELECT * FROM StoreManager.products
   `);
-  console.log(response);
+  
   return response;
 };
 const search = async (query) => {
