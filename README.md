@@ -55,4 +55,4 @@ Desenvolvido com Node 16 e muita dedicação.
 
 ---
 
-Template desenvolvido com carinho por [AG-Dev](https://www.linkedin.com/in/adson-gomes-oliveira/)
+Template developed with :white_heart: by [Dev.ago](https://www.linkedin.com/in/adson-gomes-oliveira/)
