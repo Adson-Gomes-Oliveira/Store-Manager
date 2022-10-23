@@ -27,7 +27,7 @@ Uma API com CRUD completo de produtos para um banco de dados MySQL.
 
 ---
 
-<p align=center>*Projeto desenvolvido 100% por mim*</p>
+<p align=center>*Projeto 100% autoral*</p>
 
 ---
 
